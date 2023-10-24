@@ -1,0 +1,34 @@
+public class Main {
+    public static void main(String[] args) {
+        int number = 113; // Test edilecek sayı
+        boolean result = isPrimeX(number); //sayi asal ise resut true değilse false olacak
+        System.out.println( result);//sonucu ekrana yazdırır
+    }
+
+    public static boolean isPrimeX(int number) {
+        while (number >= 10) {//basamak değerleri toplanacağı için sayımız 10 dan büyük olmadılır aksi halde aynı sayıyı elde ederiz
+            if (!isPrime(number)) {//sayimiz asal olmazsa false değeri döndürülecek
+                return false;
+            }
+            int sum = 0;
+            while (number > 0) {
+                sum += number % 10; //number= 113 sum =3 ,sum =3+1=4,sum=3+1+1 =5
+                number /= 10; //number =11,number=1,number=0
+            }
+            number = sum; //1+1+3=5 değerini elde ettik
+        }
+        return isPrime(number);
+    }
+
+    public static boolean isPrime(int num) {//Sayının asal olup olmadığını bize döndüren fonksiyon
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
