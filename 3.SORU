@@ -1,0 +1,40 @@
+import javax.swing.JOptionPane;
+import java.util.Random;
+
+public class SayiBulma {
+    public static void main(String[] args) {
+        Random random = new Random();
+        int rastgeleSayi = random.nextInt(100) + 1; //+1 ekleyerek 1 ile 100 arasında rastgele sayı üretiyor
+/*java.util.Random sınıfı, rastgele sayılar üretmek için kullanılır. Bu sınıf, nextInt(int n) metoduyla belirtilen
+bir üst sınıra kadar (ancak üst sınıf hariç) rastgele bir tamsayı üretir.
+ */
+        int girilenSayi = 0;
+        int tahminSayisi = 0;
+
+        try {
+            while (girilenSayi != rastgeleSayi) {//tahmini blemeyene kadar çalışacak
+                String tahminStr = JOptionPane.showInputDialog("1 ile 100 arasında bir sayı tahmin edin:");
+                girilenSayi = Integer.parseInt(tahminStr);//Integer.parseInt() Java programlama dilinde bir metni tam sayıya dönüştürmek için kullanılan bir metottur. Bu metod, bir metin dizesini (String) alır ve bu metni ondalık sayıya (int) dönüştürür
+                tahminSayisi++;//bilemediğimiz sürece artacak
+
+                if (girilenSayi < 1 || girilenSayi > 100) {//yanlış girilebilecek sayılar için durumlar oluşturuyoruz
+                    JOptionPane.showMessageDialog(null, "Lütfen 1 ile 100 arasında bir sayı girin!");
+                } else if (girilenSayi < rastgeleSayi) {
+                    JOptionPane.showMessageDialog(null, "Daha büyük bir sayı girin!");
+                } else if (girilenSayi > rastgeleSayi) {
+                    JOptionPane.showMessageDialog(null, "Daha küçük bir sayı girin!");
+                }
+            }
+
+            JOptionPane.showMessageDialog(null, "Tebrikler! " + tahminSayisi + " tahminde bildiniz.");//artan tahminSayisi değişkenini buraya ekleyerek çıktı veriyoruz
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Geçersiz giriş. Lütfen bir sayı girin!");
+           /* catch (NumberFormatException e) ifadesi,özellikle metin dönüşümleri sırasında ortaya çıkabilecek NumberFormatException hatasını ele almak için kullanılır. Bu hata,
+            bir metin (String) ifadesini sayıya (integer, float, double vb.) dönüştürmeye çalışırken, metnin doğru bir sayı formatında olmadığı durumda kullanılır.*/
+        }
+        catch (Exception e) {//(Exception e) ifadesi, programda oluşabilecek geniş bir hata yelpazesini ele almak için kullanılır.
+                JOptionPane.showMessageDialog(null,"Beklenmedil bir durum oluştu");
+            }
+
+        }
+    }
