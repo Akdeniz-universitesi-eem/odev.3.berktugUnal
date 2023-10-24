@@ -33,3 +33,14 @@ public class TavlaZar {
         frame.pack();
         frame.setVisible(true);
     }}
+
+
+public class Main {
+    public static void main(String[] args) {
+
+TavlaZar tavlaZar=new TavlaZar();
+tavlaZar.hesapla();
+
+    }
+}
+
